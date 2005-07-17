@@ -1,0 +1,30 @@
+Index: e-smith-turba/e-smith-turba.spec
+diff -u e-smith-turba/root/etc/e-smith/events/actions/turba_upgrade:1.1 e-smith-turba/root/etc/e-smith/events/actions/turba_upgrade:1.2
+--- e-smith-turba/root/etc/e-smith/events/actions/turba_upgrade:1.1	Tue Apr 19 13:47:52 2005
++++ e-smith-turba/root/etc/e-smith/events/actions/turba_upgrade	Tue Apr 19 15:35:38 2005
+@@ -23,7 +23,7 @@
+ use strict;
+ use DBI;
+ use esmith::ConfigDB;
+-use esmith::utils;
++use esmith::util;
+ 
+ # Exit early if there is nothing to do
+ die("horde db must exist") unless ( -d "/var/lib/mysql/horde/");
+@@ -37,7 +37,7 @@
+ my $conf = esmith::ConfigDB->open_ro 
+     or die "Can't open configuration database: $!\n";
+ our $username       = 'root';
+-our $password       = esmith::utils::LdapPassword();
++our $password       = esmith::util::LdapPassword();
+ our $TURBA_DATABASE = 'horde';
+ our $dbi_options = {RaiseError => 1, ChopBlanks => 1, AutoCommit => 1};
+ 
+Index: e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/50turba_upgrade
+diff -u e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/50turba_upgrade:1.1 e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/50turba_upgrade:1.2
+--- e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/50turba_upgrade:1.1	Tue Apr 19 13:47:52 2005
++++ e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/50turba_upgrade	Tue Apr 19 15:35:38 2005
+@@ -1,2 +1,2 @@
+ #! /bin/sh
+-exec /etc/e-smith/events/actions/turba_upgrade_1.1_to_1.2
++exec /etc/e-smith/events/actions/turba_upgrade

@@ -1,0 +1,13 @@
+Index: e-smith-turba/e-smith-turba.spec
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.3 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.4
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.3	Mon Apr 18 20:35:42 2005
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	Wed Jul  6 09:48:32 2005
+@@ -42,7 +42,7 @@
+         'dn',
+     ),
+     'public' => true,
+-    'readonly' => false,
++    'readonly' => true,
+     'admin' => array(),
+     'export' => true
+ );

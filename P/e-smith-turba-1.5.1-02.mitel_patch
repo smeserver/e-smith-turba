@@ -1,0 +1,380 @@
+Index: e-smith-turba/createlinks
+diff -u e-smith-turba/createlinks:1.12 e-smith-turba/createlinks:1.13
+--- e-smith-turba/createlinks:1.12	Mon Apr 18 18:04:18 2005
++++ e-smith-turba/createlinks	Mon Apr 18 20:35:42 2005
+@@ -18,6 +18,7 @@
+     40mysql.create.turba
+     50turba_upgrade_1.1_to_1.2
+     60migrate-imp-to-turba
++    80turba-1.2_to_2.0
+     ))
+ {
+     templates2events(
+Index: e-smith-turba/e-smith-turba.spec
+diff -u /dev/null e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/80turba-1.2_to_2.0:1.1
+--- /dev/null	Mon Apr 18 20:36:08 2005
++++ e-smith-turba/root/etc/e-smith/templates/etc/e-smith/sql/init/80turba-1.2_to_2.0	Mon Apr 18 20:35:42 2005
+@@ -0,0 +1,2 @@
++#! /bin/sh
++exec mysql < /home/httpd/html/horde/imp/scripts/upgrades/1.2_to_2.0.mysql.sql
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/220AppRegistryTurba
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/220AppRegistryTurba:1.1 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/220AppRegistryTurba:removed
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/220AppRegistryTurba:1.1	Wed Apr 23 11:02:33 2003
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/220AppRegistryTurba	Wed Dec 31 19:00:00 1969
+@@ -1,9 +0,0 @@
+-
+-$this->applications['turba'] = array(
+-    'fileroot' => dirname(__FILE__) . '/../turba',
+-    'webroot' => $this->applications['horde']['webroot'] . '/turba',
+-    'icon' => $this->applications['horde']['webroot'] . '/turba/graphics/turba.gif',
+-    'name' => _("Address Book"),
+-    'allow_guests' => false,
+-    'status' => 'active'
+-);
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/310ServRegistryTurba
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/310ServRegistryTurba:1.1 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/310ServRegistryTurba:removed
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/310ServRegistryTurba:1.1	Wed Apr 23 11:02:33 2003
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/310ServRegistryTurba	Wed Dec 31 19:00:00 1969
+@@ -1,54 +0,0 @@
+-$this->services['turba']['contacts']['search'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaExpandAddresses',
+-    'args' => array('addresses', 'addressbooks', 'fields'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['add'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaAddAddress',
+-    'args' => array('name', 'address', 'addressbook'),
+-    'type' => 'boolean'
+-);
+-$this->services['turba']['contacts']['import_vcard'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaImportvCard',
+-    'args' => array('source', 'vcard_data'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['sources'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaGetSources',
+-    'args' => array('writeable'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['fields'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaGetFields',
+-    'args' => array('addressbook'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['add_field'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaAddField',
+-    'args' => array('address', 'name', 'field', 'value', 'addressbook'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['delete_field'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaDeleteField',
+-    'args' => array('address', 'field', 'addressbooks'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['get_field'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaGetField',
+-    'args' => array('address', 'field', 'addressbooks'),
+-    'type' => 'array'
+-);
+-$this->services['turba']['contacts']['list_field'] = array(
+-    'file' => '%application%/lib/api.php',
+-    'function' => 'turbaListField',
+-    'args' => array('field', 'addressbooks'),
+-    'type' => 'array'
+-);
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/00header
+diff -u /dev/null e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/00header:1.1
+--- /dev/null	Mon Apr 18 20:36:08 2005
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/00header	Mon Apr 18 20:35:42 2005
+@@ -0,0 +1,2 @@
++/* CONFIG START. DO NOT CHANGE ANYTHING IN OR AFTER THIS LINE. */
++// $Horde: turba/config/conf.xml,v 1.6 2004/12/08 17:08:37 jan Exp $
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf:1.1 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf:1.2
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf:1.1	Wed Apr 23 11:02:33 2003
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf	Mon Apr 18 20:35:42 2005
+@@ -1,56 +1,5 @@
+-/*
+- * Turba Configuration File
+- *
+- * This file contains global configuration settings for Turba. Values
+- * may be safely edited by hand.  Use conf.php.dist as a reference.
+- *
+- * Contact sources are defined in 'sources.php'.
+- * Default user preferences are defined in 'prefs.php'.
+- *
+- * Strings should be enclosed in 'quotes'.
+- * Integers should be given literally (without quotes).
+- * Boolean values may be true or false (no quotes).
+- *
+- * $Horde: turba/config/conf.php.dist,v 1.21.2.1 2001/12/10 21:41:05 bjn Exp $
+- */
+-
+-
+-/**
+- ** Menu settings
+- **/
+-
+-// Should we display an Import/Export link in the Horde application
+-// menus?
++// 100Conf
+ $conf['menu']['import_export'] = true; 
+-
+-// This is an array of applications (using the names defined in
+-// horde/config/registry.php) to include links to in the menubar. An
+-// example providing a link to IMP (an email program) would be:
+-// $conf['menu']['apps'] = array('imp');
+-
+-{
+-$OUT = '$conf[\'menu\'][\'apps\'] = array(';
+-
+-use esmith::ConfigDB;
+-my $c = esmith::ConfigDB->open_ro;
+-
+-my $record = $c->get('horde');
+-
+-foreach $component (qw/ chora gollem hermes imp 
+-    jonah kronolith mnemo nag orator rakim sork 
+-    trean troll whups /) {
+-
+-    my $status = $record->prop($component);
+-
+-    if (!defined ($status)) {
+-        $status = '';
+-    }
+-
+-    if ($status eq 'installed') {
+-        $OUT .= '\'' . $component . '\', '
+-    }
+-}
+-
+-$OUT = substr($OUT, 0, length($OUT) - 2) . ");\n";
+-
+-}
++$conf['menu']['apps'] = array('imp');
++$conf['client']['addressbook'] = 'localldap';
++$conf['search']['cache'] = true;
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/999footer
+diff -u /dev/null e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/999footer:1.1
+--- /dev/null	Mon Apr 18 20:36:08 2005
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/999footer	Mon Apr 18 20:35:42 2005
+@@ -0,0 +1,2 @@
++// 999Footer
++/* CONFIG END. DO NOT CHANGE ANYTHING IN OR BEFORE THIS LINE. */
+\ No newline at end of file
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin:1.1.1.1 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin:removed
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin:1.1.1.1	Mon Apr  8 15:31:54 2002
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin	Wed Dec 31 19:00:00 1969
+@@ -1,2 +0,0 @@
+-// $Horde: turba/config/sources.php.dist,v 1.22.2.4 2002/01/01 12:58:34 jan Exp $
+-
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/10Netcenter
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/10Netcenter:1.2 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/10Netcenter:1.3
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/10Netcenter:1.2	Tue Apr 23 15:10:26 2002
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/10Netcenter	Mon Apr 18 20:35:42 2005
+@@ -1,31 +0,0 @@
+-/*
+-$cfgSources['netcenter'] = array(
+-    'title' => 'Netcenter Member Directory',
+-    'type' => 'ldap',
+-    'params' => array(
+-        'server' => 'memberdir.netscape.com',
+-        'port' => 389,
+-        'root' => 'ou=member_directory,o=netcenter.com',
+-        'dn' => array('cn'),
+-        'objectclass' => 'person',
+-        'filter' => ''
+-    ),
+-    'map' => array(
+-        '__key' => 'dn',
+-        'name' => 'cn',
+-        'email' => 'mail',
+-        'alias' => 'givenname'
+-    ),
+-    'search' => array(
+-        'name',
+-        'email',
+-        'alias'
+-    ),
+-    'strict' => array(
+-        'dn'
+-    ),
+-    'public' => true,
+-    'readonly' => true,
+-    'export' => false
+-);
+-*/
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/20Bigfoot
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/20Bigfoot:1.2 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/20Bigfoot:1.3
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/20Bigfoot:1.2	Tue Apr 23 15:10:26 2002
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/20Bigfoot	Mon Apr 18 20:35:42 2005
+@@ -1,25 +0,0 @@
+-/*
+-$cfgSources['bigfoot'] = array(
+-    'title' => 'Bigfoot',
+-    'type' => 'ldap',
+-    'params' => array(
+-        'server' => 'ldap.bigfoot.com',
+-        'port' => 389,
+-        'root' => ''
+-    ),
+-    'map' => array(
+-        '__key' => 'dn',
+-        'name' => 'cn',
+-        'email' => 'mail',
+-        'alias' => 'givenname'
+-    ),
+-    'search' => array(
+-        'name',
+-        'email',
+-        'alias'
+-    ),
+-    'public' => true,
+-    'readonly' => true,
+-    'export' => false
+-);
+-*/
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/30Verisign
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/30Verisign:1.2 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/30Verisign:1.3
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/30Verisign:1.2	Tue Apr 23 15:10:26 2002
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/30Verisign	Mon Apr 18 20:35:42 2005
+@@ -1,23 +0,0 @@
+-/*
+-$cfgSources['verisign'] = array(
+-    'title' => 'Verisign Directory',
+-    'type' => 'ldap',
+-    'params' => array(
+-        'server' => 'directory.verisign.com',
+-        'port' => 389,
+-        'root' => '',
+-    ),
+-    'map' => array(
+-        '__key' => 'dn',
+-        'name' => 'cn',
+-        'email' => 'mail',
+-    ),
+-    'search' => array(
+-        'name',
+-        'email'
+-    ),
+-    'public' => true,
+-    'readonly' => true,
+-    'export' => false
+-);
+-*/
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL:1.3 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL:1.4
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL:1.3	Fri Nov 21 16:13:10 2003
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL	Mon Apr 18 20:35:42 2005
+@@ -1,40 +0,0 @@
+-$cfgSources['localsql'] = array(
+-    'title' => 'My Addressbook',
+-    'type' => 'sql',
+-    'params' => array(
+-        'phptype' => 'mysql',
+-        'hostspec' => 'localhost',
+-        'username' => 'horde',
+-        'password' => '{$horde{DbPassword}}',
+-        'database' => 'horde',
+-        'table' => 'turba_objects'
+-    ),
+-    'map' => array(
+-        '__key' => 'object_id',
+-        '__owner' => 'owner_id',
+-        '__type' => 'object_type',
+-        '__members' => 'object_members',
+-        'name' => 'object_name',
+-        'email' => 'object_email',
+-        'homeAddress' => 'object_homeaddress',
+-        'workAddress' => 'object_workaddress',
+-        'homePhone' => 'object_homephone',
+-        'workPhone' => 'object_workphone',
+-        'cellPhone' => 'object_cellphone',
+-        'fax' => 'object_fax',
+-        'title' => 'object_title',
+-        'company' => 'object_company',
+-        'notes' => 'object_notes'
+-    ),
+-    'search' => array(
+-        'name',
+-        'email'
+-    ),
+-    'strict' => array(
+-        'object_id'
+-    ),
+-    'public' => false,
+-    'readonly' => false,
+-    'admin' => array(),
+-    'export' => true
+-);
+Index: e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+diff -u e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.2 e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.3
+--- e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP:1.2	Wed Apr 23 11:02:33 2003
++++ e-smith-turba/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	Mon Apr 18 20:35:42 2005
+@@ -4,22 +4,45 @@
+     'params' => array(
+         'server' => 'localhost',
+         'port' => 389,
++        'tls' => false,
+         'root' => '',
+-        'objectclass' => 'person',
++        'sizelimit' => 200,
++        'dn' => array('cn'),
++        'objectclass' => array('top',
++                               'person',
++                               'organizationalPerson','inetOrgPerson'),
++        'charset' => 'iso-8859-1',
++        // check if all required attributes for an entry are set and add them
++        // if needed.
++        'checkrequired' => false,
++        // string to put in missing required attributes.
++        'checkrequired_string' => ' ',
+         'version' => 3
+     ),
+     'map' => array(
+         '__key' => 'dn',
++        '__uid' => 'uid',
+         'name' => 'cn',
+         'email' => 'mail',
++        'homePhone' => 'homephone',
++        'workPhone' => 'telephonenumber',
++        'cellPhone' => 'mobiletelephonenumber',
++        'homeAddress' => 'homepostaladdress'
++        // 'freebusyUrl' => 'calFBURL'
+     ),
+     'search' => array(
+         'name',
+-        'email'
++        'email',
++        'homePhone',
++        'workPhone',
++        'cellPhone',
++        'homeAddress'
+     ),
+-    'public' => false,
+-    'readonly' => true,
++    'strict' => array(
++        'dn',
++    ),
++    'public' => true,
++    'readonly' => false,
++    'admin' => array(),
+     'export' => true
+ );
+-
+-
+Index: e-smith-turba/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/80turba-1.2_to_2.0
+diff -u /dev/null e-smith-turba/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/80turba-1.2_to_2.0:1.1
+--- /dev/null	Mon Apr 18 20:36:08 2005
++++ e-smith-turba/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/80turba-1.2_to_2.0	Mon Apr 18 20:35:43 2005
+@@ -0,0 +1 @@
++PERMS=0540
