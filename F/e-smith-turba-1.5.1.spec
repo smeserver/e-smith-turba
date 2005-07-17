@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 06
+%define release 06sme01
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -18,11 +18,15 @@ BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
 Requires: e-smith-base, e-smith-lib, e-smith >= 4.1
-Requires: turba >= 1.2
+Requires: turba-h3 >= 2.0
 AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
+- [1.5.1-06sme01]
+- Update requires
+
 * Wed Jul  6 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.5.1-06]
 - Mark ldap address book as readonly. [SF: 1189640]
