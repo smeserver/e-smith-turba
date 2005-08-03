@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 06sme01
+%define release 08
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -13,6 +13,7 @@ Patch1: e-smith-turba-1.5.1-03.mitel_patch
 Patch2: e-smith-turba-1.5.1-04.mitel_patch
 Patch3: e-smith-turba-1.5.1-05.mitel_patch
 Patch4: e-smith-turba-1.5.1-06.mitel_patch
+Patch5: e-smith-turba-1.5.1-07.mitel_patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
@@ -23,9 +24,14 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
-* Sun Jul 17 2005 Shad L. Lords <slords@mail.com>
-- [1.5.1-06sme01]
-- Update requires
+* Tue Aug  2 2005 Shad Lords <slords@email.com>
+- [1.5.1-08]
+- Update requires (turba-h3 replaces turba).
+
+* Tue Aug  2 2005 Charlie Brady <charlieb@e-smith.com>
+- [1.5.1-07]
+- Purge deprecated esmith::config and esmith::db APIs
+  from template fragments.
 
 * Wed Jul  6 2005 Charlie Brady <charlieb@e-smith.com>
 - [1.5.1-06]
@@ -362,6 +368,7 @@ application for horde/IMP)
 %patch2 -p1
 %patch3 -p1
 %patch4 -p1
+%patch5 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update

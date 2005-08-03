@@ -1,0 +1,32 @@
+Index: e-smith-turba/e-smith-turba.spec
+diff -u e-smith-turba/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85TurbaAccess:1.1.1.1 e-smith-turba/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85TurbaAccess:1.2
+--- e-smith-turba/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85TurbaAccess:1.1.1.1	Mon Apr  8 15:31:53 2002
++++ e-smith-turba/root/etc/e-smith/templates/etc/httpd/conf/httpd.conf/85TurbaAccess	Tue Aug  2 18:28:29 2005
+@@ -1,17 +1,8 @@
+ {
+-    use esmith::db;
+-    use esmith::config;
+-
+-    local %services;
+-    $services{'imp'} = $imp;
+-
+-    my $status = db_get_prop(\%services, "imp", "status");
+-
+-    if (defined $status)
++    my $status = $imp{status} || 'disabled';
++    if ($status eq 'enabled')
+     {
+-	if ($status eq 'enabled')
+-	{
+-	    $OUT .= qq(
++	$OUT .= qq(
+ # IMP specific access configuration
+ 
+ <Directory /home/httpd/html/horde/turba/config>
+@@ -34,6 +25,5 @@
+     deny from all
+ </Directory>
+ );
+-	}
+     }
+ }
