@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 08
+%define release 09
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -24,6 +24,9 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Wed Nov 30 2005 Gordon Rowell <gordonr@gormand.com.au> 1.5.1-09
+- Bump release number only
+
 * Tue Aug  2 2005 Shad Lords <slords@email.com>
 - [1.5.1-08]
 - Update requires (turba-h3 replaces turba).
