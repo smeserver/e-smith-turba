@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 09
+%define release 10
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -24,6 +24,9 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Wed Feb  8 2006 1.5.1-10
+- Change default group of included files from www to root. [SME: 700]
+
 * Wed Nov 30 2005 Gordon Rowell <gordonr@gormand.com.au> 1.5.1-09
 - Bump release number only
 
@@ -402,5 +405,5 @@ echo "%doc COPYING"          >> %{name}-%{version}-filelist
 rm -rf $RPM_BUILD_ROOT
 
 %files -f %{name}-%{version}-filelist
-%defattr(-,root,www)
+%defattr(-,root,root)
 
