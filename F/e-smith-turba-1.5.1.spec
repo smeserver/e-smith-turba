@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 10
+%define release 11
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -14,6 +14,7 @@ Patch2: e-smith-turba-1.5.1-04.mitel_patch
 Patch3: e-smith-turba-1.5.1-05.mitel_patch
 Patch4: e-smith-turba-1.5.1-06.mitel_patch
 Patch5: e-smith-turba-1.5.1-07.mitel_patch
+Patch6: e-smith-turba-1.5.1-11.menusettings.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
@@ -24,6 +25,11 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Sat Feb 25 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.5.1-11
+- Removed menu-apps line from 100Conf and added 120MenuSettings.
+- added %post and %postun lines to spec file that add/remove db settings
+  that 120MenuSettings will reference. [SME: 883]
+
 * Wed Feb  8 2006 1.5.1-10
 - Change default group of included files from www to root. [SME: 700]
 
@@ -375,6 +381,7 @@ application for horde/IMP)
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
+%patch6 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
@@ -403,6 +410,12 @@ echo "%doc COPYING"          >> %{name}-%{version}-filelist
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
+
+%post
+/sbin/e-smith/config setprop horde turba installed
+
+%postun
+/sbin/e-smith/config delprop horde turba
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
