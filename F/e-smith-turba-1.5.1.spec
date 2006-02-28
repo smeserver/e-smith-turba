@@ -26,7 +26,8 @@ Obsoletes: dcb-e-smith-turba
 
 %changelog
 * Tue Feb 28 2006 Charlie Brady <charlie_brady@mitel.com> 1.5.1-12
-- Back out menusettings changes for now. We'll do them later. [SME: 883]
+- Back out menusettings changes for now. We'll probably do them later.
+  [SME: 883]
 
 * Sat Feb 25 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.5.1-11
 - Removed menu-apps line from 100Conf and added 120MenuSettings.
