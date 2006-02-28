@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.5.1
-%define release 11
+%define release 12
 Version: %{version}
 Release: %{release}
 License: GPL
@@ -25,6 +25,9 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Tue Feb 28 2006 Charlie Brady <charlie_brady@mitel.com> 1.5.1-12
+- Back out menusettings changes for now. We'll do them later. [SME: 883]
+
 * Sat Feb 25 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.5.1-11
 - Removed menu-apps line from 100Conf and added 120MenuSettings.
 - added %post and %postun lines to spec file that add/remove db settings
@@ -381,7 +384,7 @@ application for horde/IMP)
 %patch3 -p1
 %patch4 -p1
 %patch5 -p1
-%patch6 -p1
+#%patch6 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
@@ -410,12 +413,6 @@ echo "%doc COPYING"          >> %{name}-%{version}-filelist
 
 %clean 
 rm -rf $RPM_BUILD_ROOT
-
-%post
-/sbin/e-smith/config setprop horde turba installed
-
-%postun
-/sbin/e-smith/config delprop horde turba
 
 %files -f %{name}-%{version}-filelist
 %defattr(-,root,root)
