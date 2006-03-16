@@ -1,20 +1,13 @@
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
-%define version 1.5.1
-%define release 12
+%define version 1.6.0
+%define release 01
 Version: %{version}
 Release: %{release}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Patch0: e-smith-turba-1.5.1-02.mitel_patch
-Patch1: e-smith-turba-1.5.1-03.mitel_patch
-Patch2: e-smith-turba-1.5.1-04.mitel_patch
-Patch3: e-smith-turba-1.5.1-05.mitel_patch
-Patch4: e-smith-turba-1.5.1-06.mitel_patch
-Patch5: e-smith-turba-1.5.1-07.mitel_patch
-Patch6: e-smith-turba-1.5.1-11.menusettings.patch
 Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
@@ -25,6 +18,9 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Wed Mar 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.6.0-01
+- Roll stable stream version. [SME: 1016]
+
 * Tue Feb 28 2006 Charlie Brady <charlie_brady@mitel.com> 1.5.1-12
 - Back out menusettings changes for now. We'll probably do them later.
   [SME: 883]
@@ -379,13 +375,6 @@ application for horde/IMP)
 
 %prep
 %setup
-%patch0 -p1
-%patch1 -p1
-%patch2 -p1
-%patch3 -p1
-%patch4 -p1
-%patch5 -p1
-#%patch6 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
