@@ -2,13 +2,13 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.6.0
-%define release 01
+%define release 2
 Version: %{version}
-Release: %{release}
+Release: %smerelease %{release}
+Packager: %{_packager}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
-Packager: e-smith developers <bugs@e-smith.com>
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -18,6 +18,10 @@ AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
 
 %changelog
+* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+- Update to new release naming.  No functional changes.
+- Make Packager generic
+
 * Wed Mar 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.6.0-01
 - Roll stable stream version. [SME: 1016]
 
