@@ -1,26 +1,81 @@
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
-%define version 1.6.0
-%define release 2
+%define version 1.7.0
+%define release 9
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
+Patch0: e-smith-turba-1.7-01.conf_php.patch
+Patch1: e-smith-turba-1.7-02.sources_php.patch
+Patch2: e-smith-turba-1.7-03.prefs_php.patch
+Patch3: e-smith-turba-1.7-04.createlinks.patch
+Patch4: e-smith-turba-1.7-05.menuarray.patch
+Patch5: e-smith-turba-1.7-06.freebusy.patch
+Patch6: e-smith-turba-1.7-07.turba_horde_registry_php.patch
+Patch7: e-smith-turba-1.7-08.remove_bigfoot_entry 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
 Requires: e-smith-base, e-smith-lib, e-smith >= 4.1
-Requires: turba-h3 >= 2.0
+Requires: turba-h3 >= 2.1
 AutoReqProv: no
 Obsoletes: dcb-e-smith-turba
+Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
-* Thu Dec 07 2006 Shad L. Lords <slords@mail.com>
+* Sat Dec 09 2006 Shad L. Lords <slords@mail.com>
 - Update to new release naming.  No functional changes.
 - Make Packager generic
+
+* Fri Nov 24 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-08
+- Turba 2.1.3 formally removed the bigfoot ldap search entry.  e-smith-turba had
+  this entry as a 0 byte file, this change is to note that.
+
+* Thu Oct 5 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-07
+- Added turba specific horde/config/registry.php settings.  These were previously
+  kept in the e-smith-horde rpm.
+
+* Mon Oct 2 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-06
+- Added a section to the template file 50LocalLDAP that will look for a db setting
+  which will give the ability to enable or disable the storing of freebusy information
+  for horde to the ldap database.  
+- This should help a lot in setting up a company wide directory with Free/Busy information
+  already populated in the LDAP DB which should eliminate the need for each user to have to 
+  setup a personal address book with everyone's name that they want to do free/busy searches 
+  against.
+- To activate - config setprop horde freebusy enabled.  
+  Default is disabled.  If you install the smeserver-kronolith that I maintain, then this
+  setting will be changed to enabled after a post-upgrade ; reboot.
+
+* Sat Sep 23 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-05
+- Modified conf.php templates and added an includes statement to 120Menusettings 
+  that will grab the information in horde/conf.menu.apps.php.  This way each of 
+  the individual horde modules don't have to repeatedly process the same template 
+  for the menu array section in conf.php.
+- Added the ability to enable or disable turba menu icon from showing up on the main 
+  webmail screen.  To initially enable - config set turba service MenuArray disabled|enabled
+  After the DB entry is created you can enable or disable this by 
+  config setprop turba MenuArray disabled|enabled
+
+* Fri Sep 22 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-04
+- Patch to createlinks that moves symlink create function from spec file
+  to createlinks section.
+
+* Fri Sep 22 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-03
+- Patch that templates turba's prefs.php for turba 2.1.2
+
+* Fri Sep 22 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-02
+- Patch to update turba templates in sources.php for turba 2.1.2
+
+* Wed Sep 20 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-01
+- Patch to update turba templates in conf.php for turba 2.1.2
+
+* Tue Sep 19 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-00
+- Rolled to new dev stream to reflect work done for turba 2.1.2
 
 * Wed Mar 15 2006 Charlie Brady <charlie_brady@mitel.com> 1.6.0-01
 - Roll stable stream version. [SME: 1016]
@@ -380,6 +435,15 @@ application for horde/IMP)
 %prep
 %setup
 
+%patch0 -p1
+%patch1 -p1
+%patch2 -p1
+%patch3 -p1
+%patch4 -p1
+%patch5 -p1
+%patch6 -p1
+%patch7 -p1
+
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
 do
@@ -387,15 +451,6 @@ do
 done
 mkdir -p root/etc/rc.d/rc7.d 
 perl createlinks
-
-for file in conf.php sources.php
-do
-    mkdir -p root/etc/e-smith/templates/home/httpd/html/horde/turba/config/$file
-    ln -s /etc/e-smith/templates-default/template-begin-php \
-      root/etc/e-smith/templates/home/httpd/html/horde/turba/config/$file/template-begin
-    ln -s /etc/e-smith/templates-default/template-end-php \
-      root/etc/e-smith/templates/home/httpd/html/horde/turba/config/$file/template-end
-done
 
 
 %install
