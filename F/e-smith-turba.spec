@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 10
+%define release 11
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -17,6 +17,7 @@ Patch4: e-smith-turba-1.7-05.menuarray.patch
 Patch5: e-smith-turba-1.7-06.freebusy.patch
 Patch6: e-smith-turba-1.7-07.turba_horde_registry_php.patch
 Patch7: e-smith-turba-1.7-08.remove_bigfoot_entry 
+Patch8: e-smith-turba-1.7-11.shared_addressbooks.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -27,6 +28,10 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Tue Jan 23 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-11
+- Added the ability to enable shared address books.  To activate
+  config setprop horde SharedAddressbooks enabled ; signal-event email-update [SME: 2218]
+
 * Fri Dec 22 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-10
 - Re-apply of patch four which removes the 100Conf.orig file that is bogus.
 
@@ -446,6 +451,7 @@ application for horde/IMP)
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
