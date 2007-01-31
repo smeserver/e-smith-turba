@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 11
+%define release 12
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -28,9 +28,12 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Wed Jan 31 2007 Shad L. Lords <slords@mail.com> 1.7.0-12
+- Fix instructions in changelog and respin.
+
 * Tue Jan 23 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-11
 - Added the ability to enable shared address books.  To activate
-  config setprop horde SharedAddressbooks enabled ; signal-event email-update [SME: 2218]
+  config setprop horde SharedAddressBooks enabled ; signal-event email-update [SME: 2218]
 
 * Fri Dec 22 2006 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-10
 - Re-apply of patch four which removes the 100Conf.orig file that is bogus.
