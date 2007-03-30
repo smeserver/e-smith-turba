@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 12
+%define release 13
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -18,6 +18,7 @@ Patch5: e-smith-turba-1.7-06.freebusy.patch
 Patch6: e-smith-turba-1.7-07.turba_horde_registry_php.patch
 Patch7: e-smith-turba-1.7-08.remove_bigfoot_entry 
 Patch8: e-smith-turba-1.7-11.shared_addressbooks.patch
+Patch9: e-smith-turba-1.7-13.turba214_prefs.php.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -28,6 +29,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Wed Mar 28 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-13
+- Update turba prefs.php templates per turba 2.1.4 [SME: 2787]
+
 * Wed Jan 31 2007 Shad L. Lords <slords@mail.com> 1.7.0-12
 - Fix instructions in changelog and respin.
 
@@ -455,6 +459,7 @@ application for horde/IMP)
 %patch6 -p1
 %patch7 -p1
 %patch8 -p1
+%patch9 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
