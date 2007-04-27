@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 13
+%define release 14
 Version: %{version}
 Release: %smerelease %{release}
 Packager: %{_packager}
@@ -19,6 +19,7 @@ Patch6: e-smith-turba-1.7-07.turba_horde_registry_php.patch
 Patch7: e-smith-turba-1.7-08.remove_bigfoot_entry 
 Patch8: e-smith-turba-1.7-11.shared_addressbooks.patch
 Patch9: e-smith-turba-1.7-13.turba214_prefs.php.patch
+Patch10: e-smith-turba-1.7-14.ldap_dn.patch 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -29,6 +30,10 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Thu Apr 26 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-14
+- Patch to 50LocalLDAP template that adds a base dn to turba's sources.php.  
+  This works for SME 7 and SME 8 [SME: 2939]
+
 * Wed Mar 28 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-13
 - Update turba prefs.php templates per turba 2.1.4 [SME: 2787]
 
@@ -460,6 +465,7 @@ application for horde/IMP)
 %patch7 -p1
 %patch8 -p1
 %patch9 -p1
+%patch10 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
