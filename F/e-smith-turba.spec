@@ -4,8 +4,7 @@ Name: %{name}
 %define version 1.7.0
 %define release 14
 Version: %{version}
-Release: %smerelease %{release}
-Packager: %{_packager}
+Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
@@ -30,6 +29,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
+- Clean up spec so package can be built by koji/plague
+
 * Thu Apr 26 2007 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-14
 - Patch to 50LocalLDAP template that adds a base dn to turba's sources.php.  
   This works for SME 7 and SME 8 [SME: 2939]
