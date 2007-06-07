@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 14
+%define release 15
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -19,6 +19,7 @@ Patch7: e-smith-turba-1.7-08.remove_bigfoot_entry
 Patch8: e-smith-turba-1.7-11.shared_addressbooks.patch
 Patch9: e-smith-turba-1.7-13.turba214_prefs.php.patch
 Patch10: e-smith-turba-1.7-14.ldap_dn.patch 
+Patch11: e-smith-turba-1.7.0-ldap_charset.patch 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -29,6 +30,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Fri Jun 08 2007 Stephen Noble <support@dungog.net> 1.7-0-15
+- change ldap charset to UTF-8 [SME: 2938]
+
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
 - Clean up spec so package can be built by koji/plague
 
@@ -468,6 +472,7 @@ application for horde/IMP)
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update

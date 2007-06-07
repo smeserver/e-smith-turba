@@ -1,0 +1,12 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2007-06-07 10:14:01.000000000 -0600
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2007-06-07 10:12:24.000000000 -0600
+@@ -19,7 +19,7 @@
+                                'person',
+                                'organizationalPerson','inetOrgPerson'),
+         'scope' => 'one',
+-        'charset' => 'iso-8859-1',
++        'charset' => 'UTF-8'
+         // check if all required attributes for an entry are set and add them
+         // if needed.
+         'checkrequired' => false,
