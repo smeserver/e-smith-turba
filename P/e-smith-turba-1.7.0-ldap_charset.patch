@@ -6,7 +6,7 @@ diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/
                                 'organizationalPerson','inetOrgPerson'),
          'scope' => 'one',
 -        'charset' => 'iso-8859-1',
-+        'charset' => 'UTF-8'
++        'charset' => 'UTF-8',
          // check if all required attributes for an entry are set and add them
          // if needed.
          'checkrequired' => false,

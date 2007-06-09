@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 15
+%define release 16
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -30,7 +30,10 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
-* Fri Jun 08 2007 Stephen Noble <support@dungog.net> 1.7-0-15
+* Sat Jun 9 2007 Shad L. Lords <slords@mail.com> 1.7.0-16
+- Fix last patch (add comma) [SME: 2938]
+
+* Fri Jun 08 2007 Stephen Noble <support@dungog.net> 1.7.0-15
 - change ldap charset to UTF-8 [SME: 2938]
 
 * Sun Apr 29 2007 Shad L. Lords <slords@mail.com>
