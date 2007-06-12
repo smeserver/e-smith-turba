@@ -1,0 +1,238 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header	2007-03-24 19:41:20.000000000 -0500
+@@ -1,6 +1,6 @@
+ //00header
+ /**
+- * $Horde: turba/config/prefs.php.dist,v 1.28.10.2 2005/10/24 15:39:12 jan Exp $
++ * $Horde: turba/config/prefs.php.dist,v 1.28.10.3 2006/12/13 16:32:21 chuck Exp $
+  *
+  * See horde/config/prefs.php for documentation on the structure of this file.
+  */
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/100displayoptions mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/100displayoptions
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/100displayoptions	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/100displayoptions	2007-03-24 19:46:54.000000000 -0500
+@@ -3,5 +3,5 @@
+     'column' => _("Display Options"),
+     'label' => _("Address Books"),
+     'desc' => _("Choose which address books to use."),
+-    'members' => array('default_dir', 'addressbookselect')
++    'members' => array('default_dir', 'addressbookselect'),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/110columnoptions mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/110columnoptions
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/110columnoptions	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/110columnoptions	2007-03-24 19:47:30.000000000 -0500
+@@ -3,5 +3,5 @@
+     'column' => _("Display Options"),
+     'label' => _("Column Options"),
+     'desc' => _("Select which fields to display in the address lists."),
+-    'members' => array('columnselect')
++    'members' => array('columnselect'),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/120display mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/120display
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/120display	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/120display	2007-03-24 19:48:38.000000000 -0500
+@@ -3,5 +3,5 @@
+     'column' => _("Display Options"),
+     'label' => _("Display"),
+     'desc' => _("Select view to display by default, sort options, and paging options."),
+-    'members' => array('initial_page', 'sortby', 'sortdir', 'maxpage', 'perpage', 'adv_results_placement')
++    'members' => array('initial_page', 'sortby', 'sortdir', 'maxpage', 'perpage'),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/130format mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/130format
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/130format	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/130format	2007-03-24 19:49:50.000000000 -0500
+@@ -3,5 +3,5 @@
+     'column' => _("Display Options"),
+     'label' => _("Name Format"),
+     'desc' => _("Select which format to display names."),  
+-    'members' => array('name_format')
++    'members' => array('name_format'),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/140application mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/140application
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/140application	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/140application	1969-12-31 18:00:00.000000000 -0600
+@@ -1,7 +0,0 @@
+-//140application
+-$prefGroups['application'] = array(
+-    'column' => _("Other Options"),
+-    'label' => _("Delete Confirmation"),
+-    'desc' => _("Delete button behaviour"),
+-    'members' => array('delete_opt')
+-);
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/150imsp mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/150imsp
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/150imsp	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/150imsp	2007-03-24 19:50:41.000000000 -0500
+@@ -5,6 +5,6 @@
+         'column' => _("Other Options"), 
+         'label' => _("IMSP Address Book Administration"),
+         'desc' => _("Add and Delete IMSP address books"),
+-        'members' => array('imsp_opt')
++        'members' => array('imsp_opt'),
+     );
+ \}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/160addressbookselect mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/160addressbookselect
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/160addressbookselect	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/160addressbookselect	2007-03-24 19:51:11.000000000 -0500
+@@ -2,5 +2,5 @@
+ // address book selection widget
+ $_prefs['addressbookselect'] = array(
+     'locked' => false,
+-    'type' => 'special'
++    'type' => 'special',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks	2007-03-24 19:51:25.000000000 -0500
+@@ -4,5 +4,5 @@
+     'value' => "",
+     'locked' => false,
+     'shared' => false,
+-    'type' => 'implicit'
++    'type' => 'implicit',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/180columnselect mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/180columnselect
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/180columnselect	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/180columnselect	2007-03-24 19:51:33.000000000 -0500
+@@ -2,5 +2,5 @@
+ // columns selection widget
+ $_prefs['columnselect'] = array(
+     'locked' => false,
+-    'type' => 'special'
++    'type' => 'special',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/190columns mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/190columns
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/190columns	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/190columns	2007-03-24 19:51:42.000000000 -0500
+@@ -4,5 +4,5 @@
+     'value' => "netcenter\temail\nbigfoot\temail\nverisign\temail\nlocalsql\temail",
+     'locked' => false,
+     'shared' => false,
+-    'type' => 'implicit'
++    'type' => 'implicit',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/200sortby mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/200sortby
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/200sortby	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/200sortby	2007-03-24 19:52:02.000000000 -0500
+@@ -5,5 +5,5 @@
+     'value' => 0,
+     'locked' => false,
+     'shared' => false,
+-    'type' => 'implicit'
++    'type' => 'implicit',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/210sortdir mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/210sortdir
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/210sortdir	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/210sortdir	2007-03-24 19:52:45.000000000 -0500
+@@ -7,5 +7,5 @@
+     'type' => 'enum', 
+     'enum' => array(0 => _("Ascending"),
+                     1 => _("Descending")),
+-    'desc' => _("Default sorting direction:")
++    'desc' => _("Default sorting direction:"),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/220maxpage mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/220maxpage
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/220maxpage	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/220maxpage	2007-03-24 19:53:01.000000000 -0500
+@@ -5,5 +5,5 @@
+     'locked' => false,  
+     'shared' => false,
+     'type' => 'number',
+-    'desc' => _("Maximum number of pages")
++    'desc' => _("Maximum number of pages"),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/230perpage mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/230perpage
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/230perpage	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/230perpage	2007-03-24 19:53:13.000000000 -0500
+@@ -4,5 +4,5 @@
+     'locked' => false,
+     'shared' => false,  
+     'type' => 'number',
+-    'desc' => _("Number of items per page")
++    'desc' => _("Number of items per page"),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/240initialpage mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/240initialpage
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/240initialpage	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/240initialpage	2007-03-24 19:53:23.000000000 -0500
+@@ -7,5 +7,5 @@
+     'type' => 'enum',
+     'desc' => _("View to display by default:"),
+     'enum' => array('browse.php' => _("Address Book Listing"),
+-                    'search.php' => _("Search"))
++                    'search.php' => _("Search")),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/250nameformat mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/250nameformat
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/250nameformat	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/250nameformat	2007-03-24 19:53:36.000000000 -0500
+@@ -8,5 +8,5 @@
+     'desc' => _("Select the format used to display names:"),
+     'enum' => array('last_first' => _("\"Lastname, Firstname\" (ie. Doe, John)"),
+                     'first_last' => _("\"Firstname Lastname\"  (ie. John Doe)"),
+-                    'none' => _("no formatting"))
++                    'none' => _("no formatting")),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir	2007-03-24 19:53:50.000000000 -0500
+@@ -6,5 +6,5 @@
+     'locked' => false,
+     'shared' => true,
+     'type' => 'select',
+-    'desc' => _("This will be the default address book when adding or importing contacts.")
++    'desc' => _("This will be the default address book when adding or importing contacts."),
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/270advresultsplacement mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/270advresultsplacement
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/270advresultsplacement	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/270advresultsplacement	1969-12-31 18:00:00.000000000 -0600
+@@ -1,12 +0,0 @@
+-//270advresultsplacement
+-// Advanced search results placement. Are results positioned above or below
+-// the search form?
+-$_prefs['adv_results_placement'] = array(
+-    'value' => 'below',
+-    'locked' => false,
+-    'shared' => false,
+-    'type' => 'enum', 
+-    'desc' => _("Specify where you want advanced search results to appear."),
+-    'enum' => array('below' => _("Below search form"),
+-                    'above'  => _("Above search form"))
+-);
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/280prefbooks mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/280prefbooks
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/280prefbooks	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/280prefbooks	2007-03-24 20:03:36.000000000 -0500
+@@ -1,8 +1,10 @@
+ //280prefbooks
++// Advanced search results placement. Are results positioned above or below
++// the search form?
+ // preference for holding any preferences-based addressbooks.
+ $_prefs['prefbooks'] = array(
+     'value' => '',
+     'locked' => false,
+     'shared' => false,
+-    'type' => 'implicit'
++    'type' => 'implicit',
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/290deleteopt mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/290deleteopt
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/290deleteopt	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/290deleteopt	1969-12-31 18:00:00.000000000 -0600
+@@ -1,9 +0,0 @@
+-//290deleteopt
+-// preference for delete confirmation dialog.
+-$_prefs['delete_opt'] = array(
+-    'value' => '1',
+-    'locked' => false,
+-    'shared' => false,
+-    'type' => 'checkbox',
+-    'desc' => _("Do you want to confirm deleting entries?")
+-);
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/300imspopt mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/300imspopt
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/300imspopt	2007-03-24 20:08:50.000000000 -0500
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/300imspopt	2007-03-24 19:58:30.000000000 -0500
+@@ -3,6 +3,6 @@
+     !isset($GLOBALS['conf']['imsp']['enabled'])) \{
+     $_prefs['imsp_opt'] = array(
+         'locked' => false,
+-        'type' => 'special'
++        'type' => 'special',
+     );
+ \}

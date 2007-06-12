@@ -1,0 +1,21 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/210AppRegistryTurba mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/210AppRegistryTurba
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/210AppRegistryTurba	1969-12-31 18:00:00.000000000 -0600
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/config/registry.php/210AppRegistryTurba	2006-10-05 21:04:06.000000000 -0500
+@@ -0,0 +1,17 @@
++// 210AppRegistryTurba
++$this->applications['turba'] = array(
++    'fileroot' => dirname(__FILE__) . '/../turba',
++    'webroot' => $this->applications['horde']['webroot'] . '/turba',
++    'name' => _("Address Book"),
++    'status' => 'active',
++    'provides' => array('contacts', 'clients'),
++    'menu_parent' => 'organizing'
++);
++
++$this->applications['turba-menu'] = array(
++    'status' => 'block',
++    'app' => 'turba',
++    'blockname' => 'tree_menu',
++    'menu_parent' => 'turba',
++);
++
