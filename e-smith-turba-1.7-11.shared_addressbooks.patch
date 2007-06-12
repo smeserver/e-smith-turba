@@ -1,0 +1,68 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/createlinks mezzanine_patched_e-smith-turba-1.7.0/createlinks
+--- e-smith-turba-1.7.0/createlinks	2007-01-23 20:48:11.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/createlinks	2007-01-23 20:43:03.000000000 -0700
+@@ -25,6 +25,7 @@
+ foreach (qw(
+     40mysql.create.turba
+     50turba_upgrade
++    57turba_mysql_reset_addressbook_pref
+     60migrate-imp-to-turba
+     ))
+ {
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref	2007-01-23 20:44:18.000000000 -0700
+@@ -0,0 +1,2 @@
++#! /bin/sh
++exec mysql < /home/httpd/html/horde/scripts/db/turba_mysql_reset_addressbook_pref.sql
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf	2007-01-23 20:48:11.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/conf.php/100Conf	2007-01-23 20:41:08.000000000 -0700
+@@ -1,6 +1,6 @@
+ // 100Conf
+ $conf['menu']['import_export'] = true; 
+ $conf['client']['addressbook'] = 'localsql';
+-$conf['shares']['source'] = 'sql';
++$conf['shares']['source'] = 'localsql';
+ $conf['comments']['allow'] = true;
+ $conf['documents']['type'] = 'horde';
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks	2007-01-23 20:48:11.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/170addressbooks	2007-01-23 20:41:31.000000000 -0700
+@@ -1,7 +1,7 @@
+ //170addressbooks
+ // address books to be displayed
+ $_prefs['addressbooks'] = array(
+-    'value' => "localsql\nlocalldap",
++    'value' => "",
+     'locked' => false,
+     'shared' => false,
+     'type' => 'implicit'
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL	2007-01-23 20:48:11.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/40LocalSQL	2007-01-23 20:42:24.000000000 -0700
+@@ -62,6 +62,9 @@
+     ),
+     'export' => true,
+     'browse' => true,
+-    'use_shares' => false,
++{
++    my $sab = ($horde{SharedAddressBooks} || 'disabled') eq 'enabled' ? 'true' : 'false';
++    $OUT = "    'use_shares' => $sab,";
++}
+ );
+ 
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref
+--- e-smith-turba-1.7.0/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates.metadata/etc/e-smith/sql/init/57turba_mysql_reset_addressbook_pref	2005-04-18 16:04:19.000000000 -0600
+@@ -0,0 +1 @@
++PERMS=0544
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/home/httpd/html/horde/scripts/db/turba_mysql_reset_addressbook_pref.sql mezzanine_patched_e-smith-turba-1.7.0/root/home/httpd/html/horde/scripts/db/turba_mysql_reset_addressbook_pref.sql
+--- e-smith-turba-1.7.0/root/home/httpd/html/horde/scripts/db/turba_mysql_reset_addressbook_pref.sql	1969-12-31 17:00:00.000000000 -0700
++++ mezzanine_patched_e-smith-turba-1.7.0/root/home/httpd/html/horde/scripts/db/turba_mysql_reset_addressbook_pref.sql	2007-01-23 20:47:44.000000000 -0700
+@@ -0,0 +1,5 @@
++CONNECT horde;
++
++update horde_prefs set pref_value = '' where pref_scope = 'turba' and pref_name= 'addressbooks' and pref_value = 'localsql\nlocalldap';
++
++FLUSH PRIVILEGES;
