@@ -2,7 +2,7 @@ Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 1.7.0
-%define release 16
+%define release 17
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -20,6 +20,7 @@ Patch8: e-smith-turba-1.7-11.shared_addressbooks.patch
 Patch9: e-smith-turba-1.7-13.turba214_prefs.php.patch
 Patch10: e-smith-turba-1.7-14.ldap_dn.patch 
 Patch11: e-smith-turba-1.7.0-ldap_charset.patch 
+Patch12: e-smith-turba-1.7.0-17.turba.mysql.sql.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -30,6 +31,12 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Tue Apr 1 2008 John H. Bennett III <bennettj@johnbennettservices.com> 1.7.0-17
+- Patch that changes the file 40mysql.create.turba in
+  /etc/e-smith/templates/etc/e-smith/sql/init to now call turba.mysql.sql which
+  replaces the obsoleted turba_objects.mysql.sql file.  Change was originally
+  made in turba 2.1.6 but 2.1.6 was never released for SME Server   [SME: 4095]
+
 * Sat Jun 9 2007 Shad L. Lords <slords@mail.com> 1.7.0-16
 - Fix last patch (add comma) [SME: 2938]
 
@@ -476,6 +483,7 @@ application for horde/IMP)
 %patch9 -p1
 %patch10 -p1
 %patch11 -p1
+%patch12 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
