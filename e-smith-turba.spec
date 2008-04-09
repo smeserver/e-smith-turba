@@ -1,3 +1,5 @@
+# $Id: e-smith-turba.spec,v 1.3 2008/04/09 13:51:48 slords Exp $
+
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
