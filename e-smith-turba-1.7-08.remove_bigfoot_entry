@@ -1,9 +1,0 @@
-diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header
---- e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header	2006-11-24 23:01:18.000000000 -0600
-+++ mezzanine_patched_e-smith-turba-1.7.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header	2006-11-24 22:58:07.000000000 -0600
-@@ -1,4 +1,4 @@
- //00header
- /**
-- * $Horde: turba/config/sources.php.dist,v 1.97.6.20 2006/06/20 09:38:33 jan Exp $
-+ * $Horde: turba/config/sources.php.dist,v 1.97.6.21 2006/08/23 15:07:11 selsky Exp $
-  */
