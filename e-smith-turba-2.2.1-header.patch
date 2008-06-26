@@ -1,0 +1,23 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header
+--- e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header	2008-05-24 22:31:23.000000000 -0500
++++ mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/00header	2008-06-15 16:37:51.000000000 -0500
+@@ -1,6 +1,6 @@
+ //00header
+ /**
+- * $Horde: turba/config/prefs.php.dist,v 1.28.10.8 2008/04/14 17:27:08 mrubinsk Exp $
++ * $Horde: turba/config/prefs.php.dist,v 1.28.10.9 2008/06/13 14:44:04 jan Exp $
+  *
+  * See horde/config/prefs.php for documentation on the structure of this file.
+  */
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir
+--- e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir	2008-04-11 20:47:40.000000000 -0500
++++ mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/prefs.php/260defaultdir	2008-06-15 16:40:29.000000000 -0500
+@@ -4,7 +4,7 @@
+     //'value' => '',
+     'value' => 'localsql',
+     'locked' => false,
+-    'shared' => true,
++    'shared' => false,
+     'type' => 'select',
+     'desc' => _("This will be the default address book when adding or importing contacts."),
+ );
