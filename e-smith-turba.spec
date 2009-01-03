@@ -1,16 +1,17 @@
-# $Id: e-smith-turba.spec,v 1.7 2008/12/06 21:35:31 mrjhb3 Exp $
+# $Id: e-smith-turba.spec,v 1.8 2009/01/03 04:13:55 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.0.0
-%define release 2
+%define release 3
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
 Group: Networking/Daemons
 Source: %{name}-%{version}.tar.gz
 Patch1: e-smith-turba-2.3.patch
+Patch2: e-smith-turba-2.3.1.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -21,6 +22,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Fri Jan 2 2009 John H. Bennett III <bennettj@johnbennettservices.com> 3.0.0-3
+- Updated template files to reflect changes in Turba 2.3.1
+
 * Sat Dec 06 2008 John H. Bennett III <bennettj@johnbennettservices.com> 3.0.0-2       
 - Updated template files to reflect changes in Turba 2.3 [SME: 4833]
 
@@ -52,6 +56,7 @@ so that Turba will work properly on SME Server
 %setup
 
 %patch1 -p1
+%patch2 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
