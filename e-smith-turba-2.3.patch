@@ -109,9 +109,8 @@ diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/etc/e-smith/templates/ho
 +    'type' => 'implicit' 
 +);
 +
-diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/home/httpd/html/horde/smeserver/turba.sql mezzanine_patched_e-smith-turba-2.2/root/home/httpd/html/horde/smeserver/turba.sql
---- e-smith-turba-2.2/root/home/httpd/html/horde/smeserver/turba.sql	2008-06-18 22:59:32.000000000 -0500
-+++ mezzanine_patched_e-smith-turba-2.2/root/home/httpd/html/horde/smeserver/turba.sql	2008-09-30 22:37:57.000000000 -0500
+--- e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql.orig	2008-06-19 05:59:32.000000000 +0200
++++ e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql	2009-01-04 18:51:02.000000000 +0100
 @@ -1,4 +1,4 @@
 --- $Horde: turba/scripts/sql/turba.sql,v 1.1.2.5 2008/04/29 19:33:23 chuck Exp $
 +-- $Horde: turba/scripts/sql/turba.sql,v 1.1.2.7 2008/09/23 15:18:25 jan Exp $
@@ -126,7 +125,7 @@ diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/home/httpd/html/horde/sm
 +    group_uid VARCHAR(255) NOT NULL,
      perm SMALLINT NOT NULL
  );
-  
+ 
 diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header
 --- e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header	2008-05-24 22:41:18.000000000 -0500
 +++ mezzanine_patched_e-smith-turba-2.2/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00header	2008-10-04 18:56:56.000000000 -0500
