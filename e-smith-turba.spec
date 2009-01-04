@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.9 2009/01/04 18:06:50 snetram Exp $
+# $Id: e-smith-turba.spec,v 1.10 2009/01/04 18:14:00 snetram Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.0.0
-%define release 4
+%define release 5
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -22,7 +22,10 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
-* Sun Jan 5 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 3.0.0-4
+* Sun Jan 4 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 3.0.0-5
+- Fix date in previous changelog entry [SME: 4910]
+
+* Sun Jan 4 2009 Jonathan Martens <smeserver-contribs@snetram.nl> 3.0.0-4
 - Fix turba.sql patch to prevent creating a .orig file [SME: 4910]
 
 * Fri Jan 2 2009 John H. Bennett III <bennettj@johnbennettservices.com> 3.0.0-3
