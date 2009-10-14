@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.11 2009/04/09 02:54:28 mrjhb3 Exp $
+# $Id: e-smith-turba.spec,v 1.12 2009/10/14 03:15:16 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.2.0
-%define release 6
+%define release 7
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -13,6 +13,7 @@ Source: %{name}-%{version}.tar.gz
 Patch1: e-smith-turba-2.3.patch
 Patch2: e-smith-turba-2.3.1.patch
 Patch3: e-smith-turba_remove_sql_schema.patch
+Patch4: e-smith-turba-2.3.2.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -23,6 +24,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Tue Oct 13 2009 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-7   
+- Updated template files to reflect changes in Turba 2.3.2 [SME: 5512]
+
 * Wed Apr 8 2009 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-6
 - Remove redundant 49turba_migrate_contacts template fragments [SME: 5148]
 
@@ -68,6 +72,7 @@ so that Turba will work properly on SME Server
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
