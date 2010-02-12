@@ -1,0 +1,21 @@
+diff -urN e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP e-smith-turba-3.2.0.new/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 01:21:11.000000000 +1100
++++ e-smith-turba-3.2.0.new/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 01:29:51.000000000 +1100
+@@ -17,16 +17,9 @@
+          'port' => 389,
+          'tls' => false,
+ {
+-   #my $smeversion = $sysconfig{ReleaseVersion} || "";  
+    my $domainName = $DomainName;
+    $domainName =~ s/\./,dc=/g;
+-   #
+-   #if  ($smeversion < '8')
+-   #{
+-      $OUT = qq(        'root' => 'dc=$domainName',);
+-   #} else {
+-   #   $OUT = qq(         'root' => 'ou=Users,dc=$domainName',);
+-   #}
++      $OUT = qq(         'root' => 'ou=Users,dc=$domainName',);
+ }
+ //         'bind_dn' => 'cn=admin,ou=users,dc=example,dc=com',
+ //         // For Active Directory:   
