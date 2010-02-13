@@ -1,0 +1,43 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.0.0/root/etc/e-smith/events/actions/turba_upgrade mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/events/actions/turba_upgrade
+--- e-smith-turba-3.0.0/root/etc/e-smith/events/actions/turba_upgrade	2010-01-23 22:11:06.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/events/actions/turba_upgrade	2010-01-23 22:10:22.000000000 -0600
+@@ -52,6 +52,10 @@
+ 
+ my @statements = (
+      "ALTER TABLE turba_shares CHANGE share_owner share_owner VARCHAR(255)",
++     "ALTER TABLE turba_shares CHANGE share_flags share_flags SMALLINT DEFAULT 0 NOT NULL",
++     "ALTER TABLE turba_shares CHANGE perm_creator perm_creator SMALLINT DEFAULT 0 NOT NULL",
++     "ALTER TABLE turba_shares CHANGE perm_default perm_default SMALLINT DEFAULT 0 NOT NULL",
++     "ALTER TABLE turba_shares CHANGE perm_guest perm_guest SMALLINT DEFAULT 0 NOT NULL",
+      "ALTER TABLE turba_shares_users CHANGE user_uid user_uid VARCHAR(255)",
+      "ALTER TABLE turba_shares_groups CHANGE group_uid group_uid VARCHAR(255)",
+ );
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.0.0/root/etc/e-smith/templates/etc/openldap/slapd.conf/12hordeschema mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/etc/openldap/slapd.conf/12hordeschema
+--- e-smith-turba-3.0.0/root/etc/e-smith/templates/etc/openldap/slapd.conf/12hordeschema	2010-01-23 22:11:06.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/etc/openldap/slapd.conf/12hordeschema	2009-12-28 12:06:56.000000000 -0600
+@@ -1 +0,0 @@
+-+include         /etc/openldap/schema/horde.schema
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql mezzanine_patched_e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql
+--- e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql	2010-01-23 22:11:06.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.0.0/root/home/httpd/html/horde/smeserver/turba.sql	2009-12-28 10:50:14.000000000 -0600
+@@ -1,4 +1,4 @@
+--- $Horde: turba/scripts/sql/turba.sql,v 1.1.2.7 2008/09/23 15:18:25 jan Exp $
++-- $Horde: turba/scripts/sql/turba.sql,v 1.1.2.9 2009-10-20 21:44:34 jan Exp $
+ 
+ CREATE TABLE IF NOT EXISTS turba_objects (
+     object_id VARCHAR(32) NOT NULL,
+@@ -53,10 +53,10 @@
+     share_id INT NOT NULL,
+     share_name VARCHAR(255) NOT NULL,
+     share_owner VARCHAR(255) NOT NULL,
+-    share_flags SMALLINT NOT NULL DEFAULT 0,
+-    perm_creator SMALLINT NOT NULL DEFAULT 0,
+-    perm_default SMALLINT NOT NULL DEFAULT 0,
+-    perm_guest SMALLINT NOT NULL DEFAULT 0,
++    share_flags SMALLINT DEFAULT 0 NOT NULL,
++    perm_creator SMALLINT DEFAULT 0 NOT NULL,
++    perm_default SMALLINT DEFAULT 0 NOT NULL,
++    perm_guest SMALLINT DEFAULT 0 NOT NULL,
+     attribute_name VARCHAR(255) NOT NULL,
+     attribute_desc VARCHAR(255),
+     attribute_params TEXT,

@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.13 2010/02/12 14:41:11 dungog Exp $
+# $Id: e-smith-turba.spec,v 1.14 2010/02/13 15:10:05 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.2.0
-%define release 8
+%define release 9
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -14,7 +14,7 @@ Patch1: e-smith-turba-2.3.patch
 Patch2: e-smith-turba-2.3.1.patch
 Patch3: e-smith-turba_remove_sql_schema.patch
 Patch4: e-smith-turba-2.3.2.patch
-Patch5: e-smith-turba-3.2.0-ldap_users.patch
+Patch5: e-smith-turba-2.3.3.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -25,6 +25,10 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Sat Feb 13 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-9
+- Updated template files to reflect changes in Turba 2.3.3 [SME: 5778]
+- Remove previous patch.  Will add new partial patch for bug 2939
+
 * Sat Feb 13 2010 Stephen Noble <support@dungog.net> 3.2.0-8
 - Update LDAP for changed schema [SME: 2939]
 

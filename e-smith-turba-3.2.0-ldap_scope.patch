@@ -1,0 +1,30 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 08:29:28.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 08:29:03.000000000 -0600
+@@ -17,16 +17,9 @@
+          'port' => 389,
+          'tls' => false,
+ {
+-   #my $smeversion = $sysconfig{ReleaseVersion} || "";  
+    my $domainName = $DomainName;
+    $domainName =~ s/\./,dc=/g;
+-   #
+-   #if  ($smeversion < '8')
+-   #{
+-      $OUT = qq(        'root' => 'dc=$domainName',);
+-   #} else {
+-   #   $OUT = qq(         'root' => 'ou=Users,dc=$domainName',);
+-   #}
++   $OUT = qq(         'root' => 'dc=$domainName',);
+ }
+ //         'bind_dn' => 'cn=admin,ou=users,dc=example,dc=com',
+ //         // For Active Directory:   
+@@ -49,7 +42,7 @@
+ //         //                        'user',
+ //         //                        'group',
+ //         //                        'contact'),
+-         'scope' => 'one',
++         'scope' => 'sub',
+ //         // For Active Directory:
+ //         // 'scope' => 'sub',
+          'charset' => 'UTF-8',
