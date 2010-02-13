@@ -1,0 +1,24 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 09:22:32.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.0.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-02-13 09:22:15.000000000 -0600
+@@ -32,8 +32,7 @@
+          'objectclass' => array('top',
+                                 'person',
+                                 'organizationalPerson',
+-                                'inetOrgPerson',
+-                                'turbaContact'),
++                                'inetOrgPerson'),
+                                 // Add 'turbaContact' to this array if using
+                                 // 'turbaType' attribute below, and 'calEntry'
+ //                              // if using 'freebusyUrl'.
+@@ -72,8 +71,8 @@
+ 
+ //         // From horde.schema.  Make sure you have 'turbaContact' objectClass
+ //         // included above:
+-           '__type' => 'turbaType',
+-           '__members' => 'turbaMembers',
++//           '__type' => 'turbaType',
++//           '__members' => 'turbaMembers',
+ //
+          'name' => 'cn',
+          'email' => 'mail',

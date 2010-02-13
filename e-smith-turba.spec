@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.15 2010/02/13 15:13:38 mrjhb3 Exp $
+# $Id: e-smith-turba.spec,v 1.16 2010/02/13 16:42:39 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.2.0
-%define release 10
+%define release 11
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -16,6 +16,7 @@ Patch3: e-smith-turba_remove_sql_schema.patch
 Patch4: e-smith-turba-2.3.2.patch
 Patch5: e-smith-turba-2.3.3.patch
 Patch6: e-smith-turba-3.2.0-ldap_scope.patch
+Patch7: e-smith-turba-3.2.0-turbatype_search.patch 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -26,6 +27,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Sat Feb 13 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-11
+- Update to fix turbatype error when using turba LDAP address search [SME: 5772]
+
 * Sat Feb 13 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-10
 - Update LDAP for changed scope [SME: 2939]
 
@@ -87,6 +91,7 @@ so that Turba will work properly on SME Server
 %patch4 -p1
 %patch5 -p1
 %patch6 -p1
+%patch7 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
