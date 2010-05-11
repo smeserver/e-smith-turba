@@ -1,0 +1,87 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/attributes.php/20SMEAttributes mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/attributes.php/20SMEAttributes
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/attributes.php/20SMEAttributes	1969-12-31 18:00:00.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/attributes.php/20SMEAttributes	2010-04-24 21:13:46.000000000 -0500
+@@ -0,0 +1,13 @@
++
++/* SME Server attributes */
++$attributes['groupdescription'] = array(
++    'label' => _("Group Description"),
++    'type' => 'text',
++    'required' => false
++);
++$attributes['groupmembers'] = array(
++    'label' => _("Group Members"),
++    'type' => 'text',
++    'required' => false
++);
++
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-04-24 21:16:29.000000000 -0500
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-04-24 21:15:50.000000000 -0500
+@@ -67,6 +67,7 @@
+ //         // is consulted for the syntax to use.
+ //         'checksyntax' => false,
+          'version' => 3,
++         'filter' => '&(!(mail=admin@{$DomainName}))',
+ //
+ //         // For Active Directory you probably want to also set the following
+ //         // parameters:
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups	1969-12-31 18:00:00.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups	2010-04-24 21:14:52.000000000 -0500
+@@ -0,0 +1,55 @@
++//60LocalLDAPGroups
++/**
++ * A local address book in an LDAP directory. This implements a public
++ * (shared) address book.
++ *
++ * To store distribution lists in the LDAP directory, you'll need to include
++ * horde/scripts/ldap/horde.schema in your LDAP configuration.
++ *
++ * To store freebusy information in the LDAP directory, you'll need to include
++ * turba/scripts/ldap/rfc2739.schema in your LDAP configuration.
++ */
++$cfgSources['localldapgroups'] = array(
++     'title' => _("Local LDAP Groups"),
++     'type' => 'ldap',
++     'params' => array(
++         'server' => 'localhost',
++         'port' => 389,
++         'tls' => false,
++{
++   my $domainName = $DomainName;
++   $domainName =~ s/\./,dc=/g;
++   $OUT = qq(         'root' => 'dc=$domainName',);
++}
++         'sizelimit' => 200,
++         'dn' => array('cn'),
++         'objectclass' => array('posixGroup'),
++         'scope' => 'sub',
++         'charset' => 'UTF-8',
++         'checkrequired' => false,
++         'checkrequired_string' => ' ',
++         'version' => 3,
++     ),
++     'map' => array(
++         '__key' => 'dn',
++         '__uid' => 'uid',
++         'name' => 'cn',
++         'email' => 'mail',
++         'groupdescription' => 'description',
++         'groupmembers' => 'memberUid',
++     ),
++     'search' => array(
++         'displayName',
++         'groupdescription',
++         'groupmembers',
++     ),
++     'strict' => array(
++         'dn',
++     ),
++     'approximate' => array(
++         'cn',
++     ),
++     'export' => true,
++     'browse' => true,
++);
++

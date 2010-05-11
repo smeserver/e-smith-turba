@@ -1,0 +1,56 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-04-24 20:56:40.000000000 -0500
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-04-24 20:55:53.000000000 -0500
+@@ -32,7 +32,19 @@
+          'objectclass' => array('top',
+                                 'person',
+                                 'organizationalPerson',
++{
++    if (($horde{freebusy} || "disabled") eq "enabled") {
++          $OUT =<<HERE;
++                                'inetOrgPerson',
++                                'turbaContact',
++                                'calEntry'),
++HERE
++} else {
++          $OUT =<<HERE;      
+                                 'inetOrgPerson'),
++HERE
++}
++}
+                                 // Add 'turbaContact' to this array if using
+                                 // 'turbaType' attribute below, and 'calEntry'
+ //                              // if using 'freebusyUrl'.
+@@ -73,6 +85,14 @@
+ //         // included above:
+ //           '__type' => 'turbaType',
+ //           '__members' => 'turbaMembers',
++{
++    if (($horde{freebusy} || "disabled") eq "enabled") {
++          $OUT =<<HERE;
++         '__type' => 'turbaType',
++         '__members' => 'turbaMembers',         
++HERE
++}
++}
+ //
+          'name' => 'cn',
+          'email' => 'mail',
+@@ -83,8 +103,15 @@
+ //
+ //         // From rfc2739.schema:
+ {
+-        my $hordefreebusy = $horde{'freebusy'} || 'disabled'; return "        #freebusy is currently not enabled.  To enable - config setprop horde freebusy enabled" unless ($hordefreebusy eq "enabled");
+-        $OUT .= '        \'freebusyUrl\' => \'calFBURL\'';
++    if (($horde{freebusy} || "disabled") eq "enabled") {
++         $OUT =<<HERE;
++         'freebusyUrl\' => 'calFBURL',       
++HERE
++} else {
++         $OUT =<<HERE;  
++         #freebusy is currently not enabled.  To enable - config setprop horde freebusy enabled
++HERE
++}
+ }
+ //
+ //         // For Active Directory servers:

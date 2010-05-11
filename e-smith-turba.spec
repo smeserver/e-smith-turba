@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.16 2010/02/13 16:42:39 mrjhb3 Exp $
+# $Id: e-smith-turba.spec,v 1.17 2010/05/11 04:46:21 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.2.0
-%define release 11
+%define release 14
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -17,6 +17,9 @@ Patch4: e-smith-turba-2.3.2.patch
 Patch5: e-smith-turba-2.3.3.patch
 Patch6: e-smith-turba-3.2.0-ldap_scope.patch
 Patch7: e-smith-turba-3.2.0-turbatype_search.patch 
+Patch8: e-smith-turba-3.2.0-freebusy.patch
+Patch9: e-smith-turba-3.2.0-attributes.php.patch
+Patch10: e-smith-turba-3.2.0-LDAP_Group.patch
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -27,6 +30,16 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Mon May 10 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-14
+- Patch that adds the ability to have a local LDAP Group Address book.  [SME: 5944]
+
+* Mon May 10 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-13
+- Patch to template attributes.php to add ability to have multiple email values
+  for a contact.  Separate entries with a comma and a space [SME: 5943]
+
+* Mon May 10 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-12
+- Update to freebusy info in sources.php [SME 5942]
+
 * Sat Feb 13 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-11
 - Update to fix turbatype error when using turba LDAP address search [SME: 5772]
 
@@ -92,6 +105,9 @@ so that Turba will work properly on SME Server
 %patch5 -p1
 %patch6 -p1
 %patch7 -p1
+%patch8 -p1
+%patch9 -p1
+%patch10 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update
