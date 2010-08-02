@@ -1,10 +1,10 @@
-# $Id: e-smith-turba.spec,v 1.17 2010/05/11 04:46:21 mrjhb3 Exp $
+# $Id: e-smith-turba.spec,v 1.18 2010/08/02 01:46:56 mrjhb3 Exp $
 
 Summary: e-smith module to configure Turba 1.0
 %define name e-smith-turba
 Name: %{name}
 %define version 3.2.0
-%define release 14
+%define release 15
 Version: %{version}
 Release: %{release}%{?dist}
 License: GPL
@@ -20,6 +20,7 @@ Patch7: e-smith-turba-3.2.0-turbatype_search.patch
 Patch8: e-smith-turba-3.2.0-freebusy.patch
 Patch9: e-smith-turba-3.2.0-attributes.php.patch
 Patch10: e-smith-turba-3.2.0-LDAP_Group.patch
+Patch11: e-smith-turba-3.2.0-remove-turbatype.patch 
 BuildRoot: /var/tmp/%{name}-%{version}-%{release}-buildroot
 BuildRequires: e-smith-devtools
 BuildArchitectures: noarch
@@ -30,6 +31,9 @@ Obsoletes: dcb-e-smith-turba
 Obsoletes: smeserver-turba-menuarray
 
 %changelog
+* Sun Aug 1 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-15
+- Update to remove turbaContact info that SME is not using [SME: 5942]
+
 * Mon May 10 2010 John H. Bennett III <bennettj@johnbennettservices.com> 3.2.0-14
 - Patch that adds the ability to have a local LDAP Group Address book.  [SME: 5944]
 
@@ -108,6 +112,7 @@ so that Turba will work properly on SME Server
 %patch8 -p1
 %patch9 -p1
 %patch10 -p1
+%patch11 -p1
 
 %build
 for i in bootstrap-console-save post-install post-upgrade email-update

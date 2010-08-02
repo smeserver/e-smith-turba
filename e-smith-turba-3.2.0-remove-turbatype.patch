@@ -1,0 +1,26 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-08-01 20:07:00.000000000 -0500
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-08-01 20:05:39.000000000 -0500
+@@ -36,7 +36,6 @@
+     if (($horde{freebusy} || "disabled") eq "enabled") {
+           $OUT =<<HERE;
+                                 'inetOrgPerson',
+-                                'turbaContact',
+                                 'calEntry'),
+ HERE
+ } else {
+@@ -86,14 +85,6 @@
+ //         // included above:
+ //           '__type' => 'turbaType',
+ //           '__members' => 'turbaMembers',
+-{
+-    if (($horde{freebusy} || "disabled") eq "enabled") {
+-          $OUT =<<HERE;
+-         '__type' => 'turbaType',
+-         '__members' => 'turbaMembers',         
+-HERE
+-}
+-}
+ //
+          'name' => 'cn',
+          'email' => 'mail',
