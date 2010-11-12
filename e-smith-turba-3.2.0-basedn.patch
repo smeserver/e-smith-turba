@@ -1,0 +1,39 @@
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin	1969-12-31 18:00:00.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/00begin	2010-11-12 13:06:30.000000000 -0600
+@@ -0,0 +1,7 @@
++//00begin
++{
++
++   use esmith::util;
++   $basedn = esmith::util::ldapBase ($DomainName);
++
++}
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-11-12 13:08:38.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/50LocalLDAP	2010-11-12 13:06:56.000000000 -0600
+@@ -17,9 +17,7 @@
+          'port' => 389,
+          'tls' => false,
+ {
+-   my $domainName = $DomainName;
+-   $domainName =~ s/\./,dc=/g;
+-   $OUT = qq(         'root' => 'dc=$domainName',);
++   $OUT .= qq(         'root' => '$basedn',);
+ }
+ //         'bind_dn' => 'cn=admin,ou=users,dc=example,dc=com',
+ //         // For Active Directory:   
+diff -Nur -x '*.orig' -x '*.rej' e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups
+--- e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups	2010-11-12 13:08:38.000000000 -0600
++++ mezzanine_patched_e-smith-turba-3.2.0/root/etc/e-smith/templates/home/httpd/html/horde/turba/config/sources.php/60LocalLDAPGroups	2010-11-12 13:07:03.000000000 -0600
+@@ -17,9 +17,7 @@
+          'port' => 389,
+          'tls' => false,
+ {
+-   my $domainName = $DomainName;
+-   $domainName =~ s/\./,dc=/g;
+-   $OUT = qq(         'root' => 'dc=$domainName',);
++   $OUT .= qq(         'root' => '$basedn',);
+ }
+          'sizelimit' => 200,
+          'dn' => array('cn'),
